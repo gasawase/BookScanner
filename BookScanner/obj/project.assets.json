@@ -33161,24 +33161,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\reese\\.nuget\\packages\\": {},
+    "C:\\Users\\princ\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\reese\\Source\\Repos\\BookScanner\\BookScanner\\BookScanner.csproj",
+      "projectUniqueName": "C:\\Users\\princ\\Desktop\\Mobile App Dev\\BookShelfScanner\\BookScanner\\BookScanner\\BookScanner.csproj",
       "projectName": "BookScanner",
-      "projectPath": "C:\\Users\\reese\\Source\\Repos\\BookScanner\\BookScanner\\BookScanner.csproj",
-      "packagesPath": "C:\\Users\\reese\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\reese\\Source\\Repos\\BookScanner\\BookScanner\\obj\\",
+      "projectPath": "C:\\Users\\princ\\Desktop\\Mobile App Dev\\BookShelfScanner\\BookScanner\\BookScanner\\BookScanner.csproj",
+      "packagesPath": "C:\\Users\\princ\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\princ\\Desktop\\Mobile App Dev\\BookShelfScanner\\BookScanner\\BookScanner\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\reese\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\princ\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

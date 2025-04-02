@@ -38,14 +38,13 @@
 
         <CollectionView Grid.Row="3" Grid.ColumnSpan="2"
                         x:Name="BookList" SelectionMode="Single"
-                        >
+                        SelectionChanged="Book_Clicked">
             <!--{place back in collectionview ones backend is done}SelectionChanged="OnBookSelected"-->
             <CollectionView.ItemTemplate>
                 <DataTemplate >
                     <!--{place back in datatemplate when data source is set up}x:DataType="local:Book"-->
-                    <Frame BorderColor="LightGray" Padding="10" CornerRadius="10">
+                    <Frame BorderColor="LightGray" Padding="10" CornerRadius="10" InputTransparent="True">
                         <HorizontalStackLayout Spacing="10">
-                            <CheckBox />
                             <VerticalStackLayout>
                                 <Label Text="{Binding Title}" FontAttributes="Bold" />
                                 <Label Text="{Binding Author}" />

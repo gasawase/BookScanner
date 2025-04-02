@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BookScanner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+2fa688671773e62ead8d39d77e040337b64693ae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+ba92325d5c18b911a786f079f3fab842efceaf9e")]
 [assembly: System.Reflection.AssemblyProductAttribute("BookScanner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BookScanner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

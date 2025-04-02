@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookScanner.Models
 {
-    internal class Book
+    public class Book
     {
         [Key]
         public string Title { get; set; }
