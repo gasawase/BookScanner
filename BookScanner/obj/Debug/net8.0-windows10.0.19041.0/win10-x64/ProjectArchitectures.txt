@@ -1,1 +1,0 @@
-C:\Users\princ\Desktop\Mobile App Dev\BookShelfScanner\BookScanner\BookScanner\BookScanner.csproj;x64
