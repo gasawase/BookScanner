@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using BookScanner.Models;
 
 namespace BookScanner
@@ -11,10 +12,12 @@ namespace BookScanner
             LoadBooks();
         }
 
-        private void OnCameraClicked(object sender, EventArgs e)
+        private async Task OnCameraClicked(object sender, EventArgs e)
         {
 			// Navigate to Book Details or implement camera functionality
-			DisplayAlert("Camera", "Camera clicked!", "OK");
+			//DisplayAlert("Camera", "Camera clicked!", "OK");
+            // open new camera view
+            await Navigation.PushAsync(new CameraView());
         }
 
 		private async void Book_Clicked(object sender, SelectionChangedEventArgs e)
