@@ -12,7 +12,7 @@ namespace BookScanner
             LoadBooks();
         }
 
-        private async Task OnCameraClicked(object sender, EventArgs e)
+        private async void OnCameraClicked(object sender, EventArgs e)
         {
 			// Navigate to Book Details or implement camera functionality
 			//DisplayAlert("Camera", "Camera clicked!", "OK");
