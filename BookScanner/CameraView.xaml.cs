@@ -1,3 +1,6 @@
+using Camera.MAUI.ZXingHelper;
+using System.Diagnostics;
+
 namespace BookScanner;
 
 public partial class CameraView : ContentPage
@@ -20,11 +23,24 @@ public partial class CameraView : ContentPage
         }
     }
 
-    private void cameraView_BarcodeDetected(object sender, Camera.MAUI.ZXingHelper.BarcodeEventArgs args)
+    //private void cameraView_BarcodeDetected(object sender, Camera.MAUI.ZXingHelper.BarcodeEventArgs args)
+    //{
+    //    Debug.WriteLine("Barcode detected!");
+    //    MainThread.BeginInvokeOnMainThread(() =>
+    //    {
+    //        barcodeResult.Text = $"{args.Result[0].BarcodeFormat}: {args.Result[0].Text}";
+    //    });
+    //}
+
+    private void cameraView_BarcodeDetected(object sender, BarcodeEventArgs e)
     {
-        MainThread.BeginInvokeOnMainThread(() =>
+        var result = e.Result.FirstOrDefault();
+        if (result != null)
         {
-            barcodeResult.Text = $"{args.Result[0].BarcodeFormat}: {args.Result[0].Text}";
-        });
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await DisplayAlert("Barcode Detected", result.Text, "OK");
+            });
+        }
     }
 }
