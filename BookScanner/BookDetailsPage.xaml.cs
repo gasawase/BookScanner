@@ -9,11 +9,12 @@ public partial class BookDetailsPage : ContentPage
     private ObservableCollection<Book> _books = new();
 
 
-    public BookDetailsPage(Book selectedBook)
+    public BookDetailsPage(Book selectedBook, DatabaseService database)
 	{
 		InitializeComponent();
 		BindingContext = selectedBook;
-	}
+		_database = database;
+    }
 
 	//Back Button
 	private async void SaveAndBackButton_Clicked(object sender, EventArgs e)
@@ -50,14 +51,15 @@ public partial class BookDetailsPage : ContentPage
         // check if it's a button and then if the thing that was clicked was from a book
         if (sender is Button button && button.BindingContext is Book bookToDelete)
         {
-            bool confirm = await DisplayAlert("Confirm Delete", $"Delete {bookToDelete.Title}?", "Yes", "No");
+            bool confirm = await DisplayAlert("Confirm Delete", $"Remove {bookToDelete.Title} from your library?", "Yes", "No");
             if (!confirm) return;
-			await Navigation.PopAsync();
 
-            //await _database.DeleteBookAsync(bookToDelete);
+            await _database.DeleteBookAsync(bookToDelete);
 
 			// also removes from the observable collection HOWEVER: if it's not removed from the database first, it will show as still being present as OnAppear will overwrite the ObservableCollection change
-            //_books.Remove(bookToDelete);
+            _books.Remove(bookToDelete);
+
+            await Navigation.PopAsync();
         }
     }
 }

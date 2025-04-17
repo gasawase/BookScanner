@@ -1,15 +1,13 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using BookScanner.Models;
 using BookScanner.Services;
-//using CloudKit;
 
 namespace BookScanner
 {
     public partial class MainPage : ContentPage
     {
         private readonly DatabaseService _database;
-        private ObservableCollection<Book> _books = new();
+        private ObservableCollection<Book> _books = [];
         public MainPage(DatabaseService database)
         {
             InitializeComponent();
@@ -28,21 +26,11 @@ namespace BookScanner
             if (e.CurrentSelection.FirstOrDefault() is Book selectedBook)
             {
 
-                await Navigation.PushAsync(new BookDetailsPage(selectedBook));
+                await Navigation.PushAsync(new BookDetailsPage(selectedBook, _database));
             }
 
             // Always clear selection so clicking again works
             BookList.SelectedItem = null;
-        }
-
-		private void LoadBooks()
-        {
-
-            if (_database.GetBooksAsync().IsCompleted)
-            {
-                var books = _database.GetBooksAsync();
-                BookList.ItemsSource = books.Result;
-            }
         }
 
         private async Task LoadBooksAsync()
@@ -50,7 +38,9 @@ namespace BookScanner
             var books = await _database.GetBooksAsync();
             _books.Clear();
             foreach (var book in books)
+            {
                 _books.Add(book);
+            }
         }
 
         protected override async void OnAppearing()
