@@ -4,15 +4,21 @@
              xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
              x:Class="BookScanner.CameraView"
              Title="CameraView">
+    
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
             <Label x:Name="barcodeResult" FontSize="20"/>
-            <cv:CameraView x:Name="cameraView" WidthRequest="300" HeightRequest="200"
+            <cv:CameraView x:Name="cameraView" HeightRequest="400"
                            CamerasLoaded="cameraView_CamerasLoaded" BarCodeDetectionEnabled="True"
                            BarcodeDetected="cameraView_BarcodeDetected"/>
+
+            <Label Text="Or enter ISBN manually:" FontAttributes="Bold" />
+            <Entry x:Name="isbnEntry" Placeholder="Enter ISBN here" Keyboard="Numeric" />
+            <Button Text="Search Book" Clicked="OnManualSearchClicked" />
+            <Label x:Name="manualResultLabel" TextColor="DarkGreen" FontAttributes="Italic"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
