@@ -8,43 +8,45 @@ public partial class BookDetailsPage : ContentPage
     private readonly DatabaseService _database;
     private ObservableCollection<Book> _books = new();
 
-
     public BookDetailsPage(Book selectedBook, DatabaseService database)
 	{
 		InitializeComponent();
 		BindingContext = selectedBook;
 		_database = database;
+		RatingInput.Text = selectedBook.Rating;
     }
 
 	//Back Button
 	private async void SaveAndBackButton_Clicked(object sender, EventArgs e)
 	{
-		//Check the Rating
-		if (!string.IsNullOrWhiteSpace(RatingInput.Text)) //if not empty
+		Book book = (sender as Button).BindingContext as Book;
+
+        int? rating;
+        //Check the Rating
+        if (!string.IsNullOrWhiteSpace(RatingInput.Text)) //if not empty
 		{
 			//convert string
-			int RatingInt = int.Parse(RatingInput.Text);
+			rating = int.Parse(RatingInput.Text);
 
-			//check 0-5
-			if (RatingInt < 0 || RatingInt > 5)
+			// check 1-5
+			if (rating < 1 || rating > 5)
 			{
-				await DisplayAlert("Invalid Input", "Please enter a rating 0 to 5", "OK");
+				await DisplayAlert("Invalid Rating", "Please enter a rating 1 to 5", "OK");
 				return;
 			}
-			else
-			{
-				//return to contact page
-				await Navigation.PopAsync();
-			}
+		}
+		else
+		{
+			rating = null;
 		}
 
-		//Save Rating...
+        //Save Rating...
+        book.Rating = rating.ToString();
 
-		//Save Notes...
+		await _database.SaveBookAsync(book);
 
-		//Save Tags... (comma seperated)
-		
-	}
+		await Navigation.PopAsync();
+    }
 
     private async void OnDeleteClicked(object sender, EventArgs e)
     {
