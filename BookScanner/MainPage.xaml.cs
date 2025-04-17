@@ -1,43 +1,62 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using BookScanner.Models;
+using BookScanner.Services;
+//using CloudKit;
 
 namespace BookScanner
 {
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        private readonly DatabaseService _database;
+        private ObservableCollection<Book> _books = new();
+        public MainPage(DatabaseService database)
         {
             InitializeComponent();
-            LoadBooks();
+            _database = database;
+            BookList.ItemsSource = _books;
         }
 
-        private void OnCameraClicked(object sender, EventArgs e)
+        private async void OnCameraClicked(object sender, EventArgs e)
         {
-			// Navigate to Book Details or implement camera functionality
-			DisplayAlert("Camera", "Camera clicked!", "OK");
+            // open new camera view
+            await Navigation.PushAsync(new CameraView(_database));
         }
 
 		private async void Book_Clicked(object sender, SelectionChangedEventArgs e)
 		{
-			var selectedBook = e.CurrentSelection.FirstOrDefault() as Book;
-			if (selectedBook != null)
-			{
-				//await DisplayAlert("Book", $"Book clicked! Title: {selectedBook.Title}", "OK");
-				await Navigation.PushAsync(new BookDetailsPage(selectedBook));
-			}
-		}
+            if (e.CurrentSelection.FirstOrDefault() is Book selectedBook)
+            {
+
+                await Navigation.PushAsync(new BookDetailsPage(selectedBook));
+            }
+
+            // Always clear selection so clicking again works
+            BookList.SelectedItem = null;
+        }
 
 		private void LoadBooks()
         {
-            var books = new List<Book>
-            {
-                new Book { Title = "Book 1", Author = "Author A", Genre = "Fiction", Description = "test 111 fjanieownaglndslnaig ", ISBN ="1234567890987" },
-                new Book { Title = "Book 2", Author = "Author B", Genre = "Non-Fiction", Description = "test 222 njfonoiangionaj nionna nfjdna nfiona  fneioanfe", ISBN ="6758493021234" },
-                new Book {Title = "Book 3", Author = "Author C", Genre = "Mystery", Description = "test 333 nf ejwangiornvdnzok ;jiok lnaklgnjkldn ovkdl,snvkodlsn mkvold;nvmkolfeadnv kofmldksnbj fsdkl", ISBN = "0987654321123"}
-            };
 
-            BookList.ItemsSource = books;
+            if (_database.GetBooksAsync().IsCompleted)
+            {
+                var books = _database.GetBooksAsync();
+                BookList.ItemsSource = books.Result;
+            }
         }
 
+        private async Task LoadBooksAsync()
+        {
+            var books = await _database.GetBooksAsync();
+            _books.Clear();
+            foreach (var book in books)
+                _books.Add(book);
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoadBooksAsync();
+        }
     }
 }
