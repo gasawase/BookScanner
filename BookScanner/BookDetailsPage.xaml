@@ -37,20 +37,20 @@
 
             <!--Rating - Text box-->
             <Label Text="Rating:" FontAttributes="Bold" />
-            <Entry x:Name="RatingInput" 
+            <Entry x:Name="RatingInput"
                    Placeholder="Enter a number between 0 and 5"
                    Keyboard="Numeric" 
                    Margin="10,-25,0,0" />
 
             <!--Notes - text box-->
             <Label Text="Notes:" FontAttributes="Bold" />
-            <Editor Placeholder="Write your thoughts..."
+            <Editor x:Name="NotesInput" Text="{Binding Notes}" Placeholder="Write your thoughts..."
                     HeightRequest="100" 
                     Margin="10,-25,0,0" />
 
             <!--Tags - read comma sperated-->
             <Label Text="Tags:" FontAttributes="Bold" />
-            <Editor Placeholder="Enter tags separated by commas..."
+            <Editor x:Name="TagsInput" Text="{Binding Tags}" Placeholder="Enter tags separated by commas..."
                     HeightRequest="100"
                     Margin="10,-25,0,0" />
 
@@ -60,7 +60,7 @@
                     Clicked="SaveAndBackButton_Clicked" 
                     HorizontalOptions="FillAndExpand"/>
 
-                <Button x:Name="DeleteButon" HorizontalOptions="End" HeightRequest="40" Text="Delete" Clicked="OnDeleteClicked"/>
+                <Button x:Name="DeleteButon" HorizontalOptions="End" Text="Delete" Clicked="OnDeleteClicked" Margin="10,0,0,0" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
