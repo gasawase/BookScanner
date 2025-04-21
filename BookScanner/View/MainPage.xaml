@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BookScanner.MainPage"       BackgroundColor="White">
+             x:Class="BookScanner.MainPage"
+             BackgroundColor="White">
 
     <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="70*, 30*"
           Padding="20" RowSpacing="15">
 
         <!-- Search Bar -->
-        <SearchBar Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Search" />
+        <SearchBar Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Search" x:Name="SearchBar" Text="{Binding SearchQuery}"/>
 
         <!-- Filter Dropdown -->
         <Picker Grid.Row="1" Grid.Column="0" Title="Filter" WidthRequest="150" HorizontalOptions="Start">
@@ -38,7 +39,8 @@
 
         <CollectionView Grid.Row="4" Grid.ColumnSpan="2"
                         x:Name="BookList" SelectionMode="Single"
-                        SelectionChanged="Book_Clicked">
+                        SelectionChanged="Book_Clicked"
+                        ItemsSource="{Binding Books}">
             <!--{place back in collectionview ones backend is done}SelectionChanged="OnBookSelected"-->
             <CollectionView.ItemTemplate>
                 <DataTemplate >

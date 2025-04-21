@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookScanner.BookDetailsPage"
+             Title="Book Details">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <!--Title-->
+            <Label Text="{Binding Title}" 
+             FontSize="24" 
+             FontAttributes="Bold"/>
+
+            <!--Author-->
+            <Label Text="{Binding Author}" 
+             FontSize="18" 
+             FontAttributes="Italic"
+             Margin="0,-25,0,0" />
+
+            <!--ISBN-->
+            <Label Text="{Binding ISBN}" TextColor="Grey" 
+                   Margin="0,-20,0,0"/>
+
+            <!--Genre-->
+            <Label Text="Genre:" FontAttributes="Bold" />
+            <Label Text="{Binding Genre}" 
+                   Margin="10,-25,0,0" />
+
+
+            <!--Description-->
+            <Label Text="Description:" FontAttributes="Bold" />
+            <Label Text="{Binding Description}" 
+                   Margin="10,-25,0,0" />
+
+
+            <!--Rating - Text box-->
+            <Label Text="Rating:" FontAttributes="Bold" />
+            <Entry x:Name="RatingInput"
+                   Placeholder="Enter a number between 0 and 5"
+                   Keyboard="Numeric" 
+                   Margin="10,-25,0,0" />
+
+            <!--Notes - text box-->
+            <Label Text="Notes:" FontAttributes="Bold" />
+            <Editor x:Name="NotesInput" Text="{Binding Notes}" Placeholder="Write your thoughts..."
+                    HeightRequest="100" 
+                    Margin="10,-25,0,0" />
+
+            <!--Tags - read comma sperated-->
+            <Label Text="Tags:" FontAttributes="Bold" />
+            <Editor x:Name="TagsInput" Text="{Binding Tags}" Placeholder="Enter tags separated by commas..."
+                    HeightRequest="100"
+                    Margin="10,-25,0,0" />
+
+            <HorizontalStackLayout>
+                <!--Save Button-->
+                <Button x:Name="SaveAndBackButton" Text="Save/Back" 
+                    Clicked="SaveAndBackButton_Clicked" 
+                    HorizontalOptions="FillAndExpand"/>
+
+                <Button x:Name="DeleteButon" HorizontalOptions="End" Text="Delete" Clicked="OnDeleteClicked" Margin="10,0,0,0" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
