@@ -10,15 +10,15 @@
         <!-- Search Bar -->
         <SearchBar Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Search" x:Name="SearchBar" Text="{Binding SearchQuery}"/>
 
-        <!-- Filter Dropdown -->
-        <Picker Grid.Row="1" Grid.Column="0" Title="Filter" WidthRequest="150" HorizontalOptions="Start">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Title</x:String>
-                    <x:String>Author</x:String>
-                    <x:String>Genre</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
+        <!-- Sort By Dropdown-->
+        <Picker Title="Sort by"
+                x:Name="SortPicker"
+                ItemsSource="{Binding SortOptions}"
+                SelectedItem="{Binding SelectedSortOption, Mode=TwoWay}"
+                Grid.Row="1"
+                Grid.Column="0"
+                WidthRequest="150"
+                HorizontalOptions="Start">
         </Picker>
 
         <!-- Camera Button -->
